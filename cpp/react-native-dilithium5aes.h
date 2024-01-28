@@ -1,8 +1,10 @@
 #ifndef DILITHIUM5AES_H
 #define DILITHIUM5AES_H
 
+#include <cstdint>
+
 namespace dilithium5aes {
-  double multiply(double a, double b);
+  int generateKeyPair(uint8_t *pk, uint8_t *sk);
 }
 
 #endif /* DILITHIUM5AES_H */

@@ -38,4 +38,10 @@ Pod::Spec.new do |s|
     s.dependency "ReactCommon/turbomodule/core"
    end
   end    
+
+  # Add external
+  s.preserve_paths = "libdilithium5aes_ref.a", "cpp/headers/api.h"
+  s.vendored_libraries = "libdilithium5aes_ref.a"
+  s.private_header_files = "cpp/headers/api.h"
+  s.library = "dilithium5aes_ref"
 end
