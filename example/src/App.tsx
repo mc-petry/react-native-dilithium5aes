@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useState } from 'react';
 
-import { StyleSheet, View, Text, Pressable, Alert } from 'react-native';
-import { generateKeyPair } from 'react-native-dilithium5aes';
+import { StyleSheet, View, Text, Pressable } from 'react-native';
+import { generateKeyPair, sign } from 'react-native-dilithium5aes';
 
 // const result = multiply(3, 7);
 
@@ -13,18 +13,14 @@ export default function App() {
     <View style={styles.container}>
       <Text>Result: {a}</Text>
       <Pressable
-        onPress={() => {
-          generateKeyPair()
-            .then(({ publicKey, secretKey }) => {
-              Alert.alert('yolo');
-              setA('publicKey: ' + publicKey + ' secretKey: ' + secretKey);
-            })
-            .catch(() => {
-              console.log('catch');
-              Alert.alert('catch');
-              setA('c');
-            });
-          setA('loading');
+        onPress={async () => {
+          const { secretKey } = await generateKeyPair();
+          const { signature } = await sign(
+            [1, 3, 2, 4, 2, 3, 5, 2, 1, 3, 3, 4, 5, 0],
+            secretKey
+          );
+
+          setA('signature: ' + signature.toString().substring(0, 10));
         }}
       >
         <Text>Press me</Text>

@@ -6,6 +6,10 @@ export interface Spec extends TurboModule {
     publicKey: number[];
     secretKey: number[];
   }>;
+  signMessage(
+    message: number[],
+    sk: number[]
+  ): Promise<{ signature: number[] }>;
 }
 
 export default TurboModuleRegistry.getEnforcing<Spec>('Dilithium5aes');

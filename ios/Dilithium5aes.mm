@@ -12,6 +12,17 @@ NSArray<NSNumber *> *convertByteArrayToNSNumberArray(const uint8_t *bytes, size_
     return [array copy];
 }
 
+uint8_t *convertNSArrayToUInt8Array(NSArray<NSNumber *> *array) {
+    size_t arrayLength = [array count];
+    uint8_t *result = (uint8_t *)malloc(arrayLength * sizeof(uint8_t));
+    
+    for (size_t i = 0; i < arrayLength; i++) {
+        result[i] = (uint8_t)[array[i] unsignedCharValue];
+    }
+    
+    return result;
+}
+
 // Don't compile this code when we build for the old architecture.
 #ifdef RCT_NEW_ARCH_ENABLED
 - (void)generateKeyPair:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject {
@@ -36,6 +47,35 @@ NSArray<NSNumber *> *convertByteArrayToNSNumberArray(const uint8_t *bytes, size_
     } else {
         NSString *error = [NSString stringWithFormat:@"Key pair generation failed with error code: %d", result];
         reject(@"KEY_PAIR_ERROR", @"Error generating key pair", [NSError errorWithDomain:@"Dilithium5aesErrorDomain" code:result userInfo:@{ NSLocalizedDescriptionKey: error }]);
+    }
+}
+
+- (void)signMessage:(NSArray<NSNumber *> *)message sk:(NSArray<NSNumber *> *)sk resolve:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject {
+    NSLog(@"[Dilithium5aes] Signing message...");
+    
+    uint8_t sig[pqcrystals_dilithium5aes_ref_BYTES];
+    size_t siglen = pqcrystals_dilithium5aes_ref_BYTES;
+    
+    // Convert NSArray to uint8_t array for message
+    size_t messageDataLength = [message count];
+    uint8_t *messageData = convertNSArrayToUInt8Array(message);
+
+    // Convert NSArray to uint8_t array for sk
+    size_t skDataLength = [sk count];
+    uint8_t *skData = convertNSArrayToUInt8Array(sk);
+    
+    int result = dilithium5aes::signMessage(sig, &siglen, messageData, messageDataLength, skData);
+    
+    if (result == 0) {
+        NSArray<NSNumber *> *signatureArray = convertByteArrayToNSNumberArray(sig, siglen);
+        
+        NSDictionary *signature = @{
+            @"signature": signatureArray,
+        };
+        resolve(signature);
+    } else {
+        NSString *error = [NSString stringWithFormat:@"Signature generation failed with error code: %d", result];
+        reject(@"SIGNATURE_ERROR", @"Error generating signature", [NSError errorWithDomain:@"Dilithium5aesErrorDomain" code:result userInfo:@{ NSLocalizedDescriptionKey: error }]);
     }
 }
 
