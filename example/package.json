@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@craftzdog/react-native-buffer": "^6.0.5",
+    "@react-native-clipboard/clipboard": "^1.13.2",
     "fast-text-encoding": "^1.0.6",
     "react": "18.2.0",
     "react-native": "0.73.2",
