@@ -1,18 +1,27 @@
-import type DilithiumType from './NativeDilithium5aes'
-const Dilithium = require('./NativeDilithium5aes')
-  .default as typeof DilithiumType
+import { NativeModules } from 'react-native'
 
-export function keyPair(): Promise<{
-  publicKey: number[]
-  secretKey: number[]
-}> {
-  return Dilithium.keyPair()
+interface Dilithium5aes {
+  keyPair(): Promise<{ publicKey: Uint8Array; secretKey: Uint8Array }>
+  sign(
+    message: Uint8Array,
+    secretKey: Uint8Array
+  ): Promise<{ signature: Uint8Array }>
+  verify(
+    signature: Uint8Array,
+    message: Uint8Array,
+    publicKey: Uint8Array
+  ): Promise<boolean>
 }
 
-export function sign(message: number[], sk: number[]) {
-  return Dilithium.sign(message, sk)
+const Dilithium = NativeModules.Dilithium5aes
+
+// Call the synchronous blocking install() function
+try {
+  if (Dilithium.install() !== true) {
+    throw new Error('Dilithium5aes JSI bindings installation failed!')
+  }
+} catch (e) {
+  throw new Error('Dilithium5aes install error!')
 }
 
-export function verify(signature: number[], message: number[], pk: number[]) {
-  return Dilithium.verify(signature, message, pk)
-}
+export const { keyPair, sign, verify } = global as unknown as Dilithium5aes

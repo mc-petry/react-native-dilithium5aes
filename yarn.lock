@@ -1873,6 +1873,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@craftzdog/react-native-buffer@npm:^6.0.5":
+  version: 6.0.5
+  resolution: "@craftzdog/react-native-buffer@npm:6.0.5"
+  dependencies:
+    ieee754: ^1.2.1
+    react-native-quick-base64: ^2.0.5
+  checksum: 921b8bc7f84778e355e81e475792399276d611a346a7e51b6266a45cf4aa82194beb3a8106af796ed143d958c8476070c59e3720c0eec0a3c31e368fbb08b350
+  languageName: node
+  linkType: hard
+
 "@cspotcode/source-map-support@npm:^0.8.0":
   version: 0.8.1
   resolution: "@cspotcode/source-map-support@npm:0.8.1"
@@ -6218,6 +6228,13 @@ __metadata:
   version: 2.0.6
   resolution: "fast-levenshtein@npm:2.0.6"
   checksum: 92cfec0a8dfafd9c7a15fba8f2cc29cd0b62b85f056d99ce448bbcd9f708e18ab2764bda4dd5158364f4145a7c72788538994f0d1787b956ef0d1062b0f7c24c
+  languageName: node
+  linkType: hard
+
+"fast-text-encoding@npm:^1.0.6":
+  version: 1.0.6
+  resolution: "fast-text-encoding@npm:1.0.6"
+  checksum: 9d58f694314b3283e785bf61954902536da228607ad246905e30256f9ab8331f780ac987e7222c9f5eafd04168d07e12b8054c85cedb76a2c05af0e82387a903
   languageName: node
   linkType: hard
 
@@ -10817,13 +10834,16 @@ __metadata:
     "@babel/core": ^7.20.0
     "@babel/preset-env": ^7.20.0
     "@babel/runtime": ^7.20.0
+    "@craftzdog/react-native-buffer": ^6.0.5
     "@react-native/babel-preset": 0.73.19
     "@react-native/metro-config": 0.73.3
     "@react-native/typescript-config": 0.73.1
     babel-plugin-module-resolver: ^5.0.0
+    fast-text-encoding: ^1.0.6
     pod-install: ^0.1.0
     react: 18.2.0
     react-native: 0.73.2
+    react-native-quick-base64: ^2.0.8
   languageName: unknown
   linkType: soft
 
@@ -10857,6 +10877,18 @@ __metadata:
     react-native: "*"
   languageName: unknown
   linkType: soft
+
+"react-native-quick-base64@npm:^2.0.5, react-native-quick-base64@npm:^2.0.8":
+  version: 2.0.8
+  resolution: "react-native-quick-base64@npm:2.0.8"
+  dependencies:
+    base64-js: ^1.5.1
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 2634f007d5c7b931ebd9b2fe337037dd7d15dbcde4cfb974d703b9f2705a0b892542536a2b4cd125fb5d4c6e08c0901f052c900bd370786a9f3a46fe171efc5f
+  languageName: node
+  linkType: hard
 
 "react-native@npm:0.73.2":
   version: 0.73.2

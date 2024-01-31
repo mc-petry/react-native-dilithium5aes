@@ -10,8 +10,11 @@
     "build:ios": "cd ios && xcodebuild -workspace Dilithium5aesExample.xcworkspace -scheme Dilithium5aesExample -configuration Debug -sdk iphonesimulator CC=clang CPLUSPLUS=clang++ LD=clang LDPLUSPLUS=clang++ GCC_OPTIMIZATION_LEVEL=0 GCC_PRECOMPILE_PREFIX_HEADER=YES ASSETCATALOG_COMPILER_OPTIMIZATION=time DEBUG_INFORMATION_FORMAT=dwarf COMPILER_INDEX_STORE_ENABLE=NO"
   },
   "dependencies": {
+    "@craftzdog/react-native-buffer": "^6.0.5",
+    "fast-text-encoding": "^1.0.6",
     "react": "18.2.0",
-    "react-native": "0.73.2"
+    "react-native": "0.73.2",
+    "react-native-quick-base64": "^2.0.8"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
