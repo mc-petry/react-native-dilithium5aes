@@ -1,6 +1,6 @@
 #import <React/RCTBridgeModule.h>
-#import <React/RCTEventEmitter.h>
-#import "react-native-dilithium5aes.h"
+// #import <React/RCTEventEmitter.h>
+// #import "react-native-dilithium5aes.h"
 
 @interface Dilithium5aes : NSObject <RCTBridgeModule>
 
