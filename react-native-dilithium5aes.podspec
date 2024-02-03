@@ -40,8 +40,12 @@ Pod::Spec.new do |s|
   end    
 
   # Add external
-  s.preserve_paths = "libdilithium5aes_ref.a", "cpp/headers/api.h"
-  s.vendored_libraries = "libdilithium5aes_ref.a"
+  s.preserve_paths = "Dilithium5AES.xcframework"
+  s.vendored_frameworks = "Dilithium5AES.xcframework"
   s.private_header_files = "cpp/headers/api.h"
   s.library = "dilithium5aes_ref"
+  # s.preserve_paths = "libdilithium5aes_ref.a", "cpp/headers/api.h"
+  # s.vendored_libraries = "libdilithium5aes_ref.a"
+  # s.private_header_files = "cpp/headers/api.h"
+  # s.library = "dilithium5aes_ref"
 end
