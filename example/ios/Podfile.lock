@@ -1443,7 +1443,7 @@ SPEC CHECKSUMS:
   React-jsitracing: 7c77101b38fcc8fa7f198de7e1d834350a85af90
   React-logger: 66b168e2b2bee57bd8ce9e69f739d805732a5570
   React-Mapbuffer: 9ee041e1d7be96da6d76a251f92e72b711c651d6
-  react-native-dilithium5aes: 30e1256611169844c5add93f3f008389eb59b03d
+  react-native-dilithium5aes: a5df2053ac2b3ac51c70655ed37b92e37ae9b788
   react-native-quick-base64: 777057ea4286f806b00259ede65dc79c7c706320
   React-nativeconfig: d753fbbc8cecc8ae413d615599ac378bbf6999bb
   React-NativeModulesApple: 964f4eeab1b4325e8b6a799cf4444c3fd4eb0a9c
@@ -1474,4 +1474,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: a42c73fff92873ff1a4d76a2cc203f908866cb97
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.14.3
