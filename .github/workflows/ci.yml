@@ -48,6 +48,7 @@ jobs:
         run: yarn prepare
 
   build-android:
+    if: false
     runs-on: ubuntu-latest
     env:
       TURBO_CACHE_DIR: .turbo/android
@@ -111,6 +112,13 @@ jobs:
 
       - name: Setup
         uses: ./.github/actions/setup
+
+      - name: Install OpenSSL
+        run: |
+          brew install openssl
+          export CFLAGS="-I/usr/local/opt/openssl@1.1/include"
+          export NISTFLAGS="-I/usr/local/opt/openssl@1.1/include"
+          export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
 
       - name: Cache turborepo for iOS
         uses: actions/cache@v3
