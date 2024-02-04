@@ -34,16 +34,11 @@ Pod::Spec.new do |s|
         "OTHER_CPLUSPLUSFLAGS" => "-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1",
         "CLANG_CXX_LANGUAGE_STANDARD" => "c++17"
     }
-    s.user_target_xcconfig = {
-      'OTHER_CFLAGS' => '-O3 -fomit-frame-pointer'
-    }
     s.dependency "React-Codegen"
     s.dependency "RCT-Folly"
     s.dependency "RCTRequired"
     s.dependency "RCTTypeSafety"
     s.dependency "ReactCommon/turbomodule/core"
-    s.dependency "fips202_ref"
-    s.dependency "aes256ctr_ref"
    end
   end
 end
