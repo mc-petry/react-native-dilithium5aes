@@ -14,7 +14,10 @@ Pod::Spec.new do |s|
   s.platforms    = { :ios => "11.0" }
   s.source       = { :git => "https://github.com/mc-petry/react-native-dilithium5aes.git", :tag => "#{s.version}" }
 
-  s.source_files = "ios/**/*.{h,m,mm}", "cpp/**/*.{hpp,cpp,c,h}"
+  s.source_files = 
+    "ios/**/*.{h,m,mm}",
+    "cpp/**/*.{hpp,cpp,c,h}",
+    "dilithium/ref/*.{sign.c,packing.c,polyvec.c,poly.c,ntt.c,reduce.c,rounding.c,symmetric-shake.c,symmetric-aes.c,fips202.c,aes256ctr.c,randombytes.c,api.h}"
 
   # Use install_modules_dependencies helper to install the dependencies if React Native version >=0.71.0.
   # See https://github.com/facebook/react-native/blob/febf6b7f33fdb4904669f99d795eba4c0f95d7bf/scripts/cocoapods/new_architecture.rb#L79.
@@ -31,21 +34,16 @@ Pod::Spec.new do |s|
         "OTHER_CPLUSPLUSFLAGS" => "-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1",
         "CLANG_CXX_LANGUAGE_STANDARD" => "c++17"
     }
+    s.user_target_xcconfig = {
+      'OTHER_CFLAGS' => '-O3 -fomit-frame-pointer'
+    }
     s.dependency "React-Codegen"
     s.dependency "RCT-Folly"
     s.dependency "RCTRequired"
     s.dependency "RCTTypeSafety"
     s.dependency "ReactCommon/turbomodule/core"
+    s.dependency "fips202_ref"
+    s.dependency "aes256ctr_ref"
    end
-  end    
-
-  # Add external
-  s.preserve_paths = "Dilithium5AES.xcframework"
-  s.vendored_frameworks = "Dilithium5AES.xcframework"
-  s.private_header_files = "cpp/headers/api.h"
-  s.library = "dilithium5aes_ref"
-  # s.preserve_paths = "libdilithium5aes_ref.a", "cpp/headers/api.h"
-  # s.vendored_libraries = "libdilithium5aes_ref.a"
-  # s.private_header_files = "cpp/headers/api.h"
-  # s.library = "dilithium5aes_ref"
+  end
 end

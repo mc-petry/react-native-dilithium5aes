@@ -1,5 +1,5 @@
 <p align="center">
-  <img style="max-height:120px" src="./dilithium.png">
+  <img height="120" src="./dilithium.png">
   <h1 align="center">react-native-dilithium5aes</h1>
 </p>
 

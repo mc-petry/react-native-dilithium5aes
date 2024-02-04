@@ -2,9 +2,25 @@
 #include "TypedArray.h" // Include your typed array header
 #include <jsi/jsi.h>
 #include <vector>
-extern "C" {
-  #include "headers/api.h"
-}
+
+// --- Dilithium ---
+#define DILITHIUM_MODE 5
+#define DILITHIUM_USE_AES
+
+#include "../dilithium/ref/sign.c"
+#include "../dilithium/ref/packing.c"
+#include "../dilithium/ref/polyvec.c"
+#include "../dilithium/ref/poly.c"
+#include "../dilithium/ref/ntt.c"
+#include "../dilithium/ref/reduce.c"
+#include "../dilithium/ref/rounding.c"
+#include "../dilithium/ref/symmetric-shake.c"
+#include "../dilithium/ref/symmetric-aes.c"
+#include "../dilithium/ref/fips202.c"
+#include "../dilithium/ref/aes256ctr.c"
+#include "../dilithium/ref/randombytes.c"
+#include "../dilithium/ref/api.h"
+// --- End Dilithium ---
 
 using namespace facebook::jsi;
 using namespace std;
@@ -29,7 +45,7 @@ void installDilithium5aes(Runtime &runtime) {
           vector<uint8_t> publicKey(pqcrystals_dilithium5_ref_PUBLICKEYBYTES);
           vector<uint8_t> secretKey(pqcrystals_dilithium5_ref_SECRETKEYBYTES);
 
-          int result = pqcrystals_dilithium5aes_ref_keypair(publicKey.data(), secretKey.data());
+          int result = crypto_sign_keypair(publicKey.data(), secretKey.data());
           if (result != 0) {
               throw JSError(runtime, "Failed to generate key pair.");
           }
@@ -59,7 +75,7 @@ void installDilithium5aes(Runtime &runtime) {
         vector<uint8_t> signature(pqcrystals_dilithium5_ref_BYTES);
         size_t siglen;
 
-        int result = pqcrystals_dilithium5aes_ref_signature(signature.data(), &siglen, message.data(), message.size(), secretKey.data());
+        int result = crypto_sign_signature(signature.data(), &siglen, message.data(), message.size(), secretKey.data());
         if (result != 0) {
             throw jsi::JSError(runtime, "Failed to sign the message.");
         }
@@ -85,7 +101,7 @@ void installDilithium5aes(Runtime &runtime) {
         vector<uint8_t> message = extractUint8Array(runtime, arguments[1]);
         vector<uint8_t> publicKey = extractUint8Array(runtime, arguments[2]);
 
-        int result = pqcrystals_dilithium5aes_ref_verify(signature.data(), signature.size(), message.data(), message.size(), publicKey.data());
+        int result = crypto_sign_verify(signature.data(), signature.size(), message.data(), message.size(), publicKey.data());
         return Value(runtime, result == 0); // Return true if verification is successful
     	});
 
