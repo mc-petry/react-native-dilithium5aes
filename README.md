@@ -1,15 +1,14 @@
-<p align="center" width="100%">
-  <img src="./dilithium.png">
+<p align="center">
+  <img style="max-height:120px" src="./dilithium.png">
+  <h1 align="center">react-native-dilithium5aes</h1>
 </p>
 
-# react-native-dilithium5aes
+A high-performance native implementation of the crypto Dilithium algorithm for React Native.
 
-A high-performance native implementation of the crypto Dilithium algorithm for React Native, with built-in AES encryption.
+## Features
 
-## Key Features
-
-- High Performance: Leveraging C++ for all core functionality to ensure top-notch performance.
-- Uses JSI.
+- ⚡ **High performance**: Native C implementation. (**[JSI](https://reactnative.dev/docs/next/the-new-architecture/cxx-cxxturbomodules)**).
+- 📱 Supports **Expo**.
 
 ## Installation
 
