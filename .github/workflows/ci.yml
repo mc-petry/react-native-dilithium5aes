@@ -103,7 +103,7 @@ jobs:
           yarn turbo run build:android --cache-dir="${{ env.TURBO_CACHE_DIR }}"
 
   build-ios:
-    runs-on: macos-latest
+    runs-on: macos-14
     env:
       TURBO_CACHE_DIR: .turbo/ios
     steps:
@@ -112,13 +112,6 @@ jobs:
 
       - name: Setup
         uses: ./.github/actions/setup
-
-      - name: Install OpenSSL
-        run: |
-          brew install openssl
-          export CFLAGS="-I/usr/local/opt/openssl@1.1/include"
-          export NISTFLAGS="-I/usr/local/opt/openssl@1.1/include"
-          export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
 
       - name: Cache turborepo for iOS
         uses: actions/cache@v3
