@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.14)
 project(Dilithium5aes)
 
 set (CMAKE_VERBOSE_MAKEFILE ON)
-set (PACKAGE_NAME "ReactNativeDilithium5aes")
+set (PACKAGE_NAME "react-native-dilithium5aes")
 set (CMAKE_CXX_STANDARD 17)
 
 # Find ReactAndroid and fbjni
@@ -43,8 +43,3 @@ target_link_libraries(
   ReactAndroid::reactnativejni    # <-- CallInvokerImpl
   fbjni::fbjni                    # <-- fbjni.h
 )
-
-
-
-
-
