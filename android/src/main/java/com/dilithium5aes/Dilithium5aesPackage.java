@@ -1,44 +1,24 @@
 package com.dilithium5aes;
 
-import androidx.annotation.Nullable;
-
+import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
-import com.facebook.react.module.model.ReactModuleInfo;
-import com.facebook.react.module.model.ReactModuleInfoProvider;
-import com.facebook.react.TurboReactPackage;
+import com.facebook.react.uimanager.ViewManager;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-public class Dilithium5aesPackage extends TurboReactPackage {
-
-  @Nullable
+public class Dilithium5aesPackage implements ReactPackage {
   @Override
-  public NativeModule getModule(String name, ReactApplicationContext reactContext) {
-    if (name.equals(Dilithium5aesModule.NAME)) {
-      return new Dilithium5aesModule(reactContext);
-    } else {
-      return null;
-    }
+  public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
+    return Collections.emptyList();
   }
 
   @Override
-  public ReactModuleInfoProvider getReactModuleInfoProvider() {
-    return () -> {
-      final Map<String, ReactModuleInfo> moduleInfos = new HashMap<>();
-      moduleInfos.put(
-              Dilithium5aesModule.NAME,
-              new ReactModuleInfo(
-                      Dilithium5aesModule.NAME,
-                      Dilithium5aesModule.NAME,
-                      false, // canOverrideExistingModule
-                      false, // needsEagerInit
-                      true, // hasConstants
-                      false, // isCxxModule
-                      true // isTurboModule
-      ));
-      return moduleInfos;
-    };
+  public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
+    List<NativeModule> modules = new ArrayList<>();
+    modules.add(new Dilithium5aesModule(reactContext));
+    return modules;
   }
 }

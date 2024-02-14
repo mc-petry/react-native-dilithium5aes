@@ -22,7 +22,7 @@ RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(install)
   if (cxxBridge.runtime == nil) {
     return @false;
   }
-  installDilithium5aes(*(jsi::Runtime *)cxxBridge.runtime);
+  install(*(jsi::Runtime *)cxxBridge.runtime);
   return @true;
 }
 
