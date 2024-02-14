@@ -36,7 +36,7 @@ vector<uint8_t> extractUint8Array(Runtime &runtime, const Value &jsValue) {
   return vector<uint8_t>(jsArrayBuffer.data(runtime), jsArrayBuffer.data(runtime) + jsArrayBuffer.size(runtime));
 }
 
-void installDilithium5aes(Runtime &runtime) {
+void install(Runtime &runtime) {
     // keyPair JSI
     auto keyPairJSI = Function::createFromHostFunction(runtime,
       PropNameID::forAscii(runtime, "keyPair"),

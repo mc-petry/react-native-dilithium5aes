@@ -17,6 +17,7 @@ const Dilithium = NativeModules.Dilithium5aes
 
 // Call the synchronous blocking install() function
 try {
+  console.log(Dilithium)
   if (Dilithium.install() !== true) {
     throw new Error('Dilithium5aes JSI bindings installation failed!')
   }
